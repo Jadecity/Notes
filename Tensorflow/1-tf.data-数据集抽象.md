@@ -1,3 +1,5 @@
+
+
 tf.data API可用于对大型数据集行进抽象。
 
 1. tf.data.Dataset
@@ -114,4 +116,5 @@ tf.data API可用于对大型数据集行进抽象。
    ~~~
 
    可看出Dataset.from_tensor_slices的重要能力，通过map, filter等操作，可以将最初的数据集转成训练师实际使用的数据集。
+
 

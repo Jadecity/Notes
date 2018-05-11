@@ -1,0 +1,31 @@
+- [ ] 在使用tf.data.TFRecordDataset的时候，batch不能将不同尺寸的tensor  batch在一起，但这在物体检测的训练中特别常用，如何解决？
+
+- [ ] tf.app.run()时，如果main没有定义任何参数，会报错
+
+  ```
+  TypeError: main() takes 0 positional arguments but 1 was given
+  ```
+
+  但是定义一个没有用的空参数，就不会，比如`def main(_)`, 为什么？
+
+  **答**：因为argv[0]是运行的脚本文件名。。。
+
+- [ ] dataset.getNext获取的是一个batch的数据，但是网络的输入是一个example，那如何将batch数据用于训练呢？
+
+  **答**：定义网络的时候，input layer的placeholder的size的第一维是None就好了，实际forward的时候就是batchsize了。
+
+  ``
+
+- [ ] TF中channel的顺序是？ 
+
+  **答**： NHWC。cuDNN中是NCHW
+
+- [ ] TF中想要根据实际输入的大小来reshape，应该怎么做？例如，输入a是变长的，但是想reshape成N行3列。
+
+  **答**： 可以用tf.shape(data)[channel]来获取真正输入的大小。
+
+  ~~~python
+  a = tf.placeholder(tf.int8, [None])
+  c = tf.reshape(a, [tf.div(tf.shape(a)[0], 3), 3])
+  ~~~
+  ​
